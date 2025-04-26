@@ -1,19 +1,23 @@
-# train.py
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torchvision.transforms as transforms
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from tqdm import tqdm
-from config import learning_rate, epochs, early_stop_patience
+from config import learning_rate, epochs, early_stop_patience, train_transform, val_test_transform , train_path, val_path
+from dataset import get_loader
+from utils import get_device as device 
 
-def train_model(model, train_loader, valid_loader, device):
+def train_model(model, train_loader, valid_loader):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
 
     best_valid_loss = float('inf')
     early_stop_counter = 0
+
+    train_loader = get_loader(train_path, transform=train_transform, shuffle=True)
+    valid_loader = get_loader(val_path, transform=val_test_transform, shuffle=False)
 
     for epoch in range(epochs):
         model.train()
@@ -34,6 +38,9 @@ def train_model(model, train_loader, valid_loader, device):
 
         model.eval()
         valid_loss, valid_correct, valid_total = 0.0, 0, 0
+
+        
+
         with torch.no_grad():
             for images, labels in valid_loader:
                 images, labels = images.to(device), labels.to(device)

@@ -1,4 +1,4 @@
-# config.py
+import torchvision.transforms as transforms
 
 # Image dimensions
 resize_x = 224
@@ -20,3 +20,24 @@ early_stop_patience = 10
 
 # Number of classes
 num_classes = 5
+
+# Transformations
+train_transform = transforms.Compose([
+    transforms.Resize((resize_x, resize_y)),
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomVerticalFlip(),
+    transforms.RandomRotation(15),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=mean , std=std)
+])
+
+val_test_transform = transforms.Compose([
+    transforms.Resize((resize_x, resize_y)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=mean, std=std),
+])
+
+# Paths to dataset directories
+train_path = 'data'
+val_path = 'data'
+test_path = 'data'

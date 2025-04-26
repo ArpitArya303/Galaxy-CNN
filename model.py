@@ -1,5 +1,3 @@
-# model.py
-
 import torch.nn as nn
 import torch.nn.functional as F
 from config import input_channels, num_classes
