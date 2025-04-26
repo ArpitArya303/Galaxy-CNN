@@ -3,6 +3,7 @@
 import torch
 from torchvision import transforms
 from PIL import Image
+from model import GalaxyCNN 
 from config import resize_x, resize_y, mean, std
 
 def classify_galaxies(model, list_of_image_paths, device):
