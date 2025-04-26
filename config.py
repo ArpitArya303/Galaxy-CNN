@@ -16,7 +16,7 @@ learning_rate = 0.001
 num_workers = 4  
 
 # Training settings
-epochs = 30
+epochs = 100
 early_stop_patience = 10
 
 # Number of classes
@@ -29,7 +29,6 @@ if torch.cuda.is_available():
 else:
     device = torch.device("cpu")
     print("Using CPU")
-
 device = device
 
 # Transformations
@@ -54,4 +53,4 @@ val_path = 'data'   # change this to your validation data path
 test_path = 'data'  # change this to your test data path
 
 # weights path
-weights_path = 'checkpoints/best_weights.pth'  # change this to your weights path
+weights_path = 'checkpoints/best_weights.pth'  # change this to your weights path if trained again

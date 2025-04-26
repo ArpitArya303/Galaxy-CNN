@@ -1,3 +1,4 @@
+import torch 
 from torchvision import datasets
 from torch.utils.data import DataLoader
 from config import batch_size, num_workers
@@ -5,7 +6,6 @@ from config import batch_size, num_workers
 def get_dataset(path, transform=None):
     """
     Load the dataset from the specified path with optional transformations.
-    Use augmentation for training and no augmentation for validation/testing.
     Args:
         path (str): Path to the dataset directory.
         transform (callable, optional): Optional transform to be applied on a sample.
@@ -15,8 +15,7 @@ def get_dataset(path, transform=None):
 
 def get_loader(path, transform=None, shuffle=False, batch_size=batch_size, num_workers=num_workers):
     """
-    Load the dataset from the specified path with optional transformations.
-    Use augmentation for training and no augmentation for validation/testing.
+    Load the dataloader from the specified path with optional transformations.
     Args:
         path (str): Path to the dataset directory.
         transform (callable, optional): Optional transform to be applied on a sample.
@@ -25,3 +24,4 @@ def get_loader(path, transform=None, shuffle=False, batch_size=batch_size, num_w
     """
     dataset = get_dataset(path, transform=transform)
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+

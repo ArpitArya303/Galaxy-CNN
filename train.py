@@ -4,12 +4,11 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from tqdm import tqdm
-from config import learning_rate, epochs, early_stop_patience, train_transform, val_test_transform , train_path, val_path
+from config import learning_rate, epochs, early_stop_patience, train_transform, val_test_transform , train_path, val_path, device
 from dataset import get_loader , get_dataset
-from utils import get_device as device 
 import numpy as np
 
-def train_model(model, train_loader, valid_loader):
+def train_model(model):
 
     train_dataset = get_dataset(train_path, transform=train_transform)
     
