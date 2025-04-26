@@ -52,3 +52,6 @@ val_test_transform = transforms.Compose([
 train_path = 'data'   # change this to your training data path
 val_path = 'data'   # change this to your validation data path
 test_path = 'data'  # change this to your test data path
+
+# weights path
+weights_path = 'checkpoints/best_weights.pth'  # change this to your weights path
