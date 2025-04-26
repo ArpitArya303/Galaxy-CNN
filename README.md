@@ -50,25 +50,25 @@ Or if you prefer using my dataset where I have divided into train, validation an
 2. The dataset is organised as:
 
 ```
-dataset/
-  Train_images_final/
-    Cigar-shaped smooth/
-    completely round smooth/
-    edge-on/
-    In-between smooth/
-    spiral/
-  Valid_images/
-    Cigar-shaped smooth/
-    completely round smooth/
-    edge-on/
-    In-between smooth/
-    spiral/
-  Test_images/
-    Cigar-shaped smooth/
-    completely round smooth/
-    edge-on/
-    In-between smooth/
-    spiral/
+
+Train_images_final/
+  Cigar-shaped smooth/
+  completely round smooth/
+  edge-on/
+  In-between smooth/
+  spiral/
+Valid_images/
+  Cigar-shaped smooth/
+  completely round smooth/
+  edge-on/
+  In-between smooth/
+  spiral/
+Test_images/
+  Cigar-shaped smooth/
+  completely round smooth/
+  edge-on/
+  In-between smooth/
+  spiral/
 ```
 
 3. Update the `train_path` , `val_path` and `test_path` variables in the code with your local dataset paths.
