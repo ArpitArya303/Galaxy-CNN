@@ -71,16 +71,23 @@ dataset/
     spiral/
 ```
 
-3. Update the `train_path` and `valid_path` variables in the code with your local dataset paths.
+3. Update the `train_path` , `val_path` and `test_path` variables in the code with your local dataset paths.
 
+## Model Choice Rationale
+
+- Simplicity and Control: A custom CNN provides full control over the network architecture, helping better understand the effects of each layer.
+
+- Dataset Size: The galaxy dataset is not extremely large, making a moderately deep CNN sufficient without the need for very deep or pre-trained models.
+
+- Feature Learning: Galaxy features like spiral arms and bulges can be effectively captured by convolutional layers, which specialize in learning local patterns.
+
+- Efficiency: The model is lightweight, allowing it to train quickly even with limited computational resources.
+
+- Educational Purpose: Building the model from scratch reinforces core deep learning concepts, providing valuable learning experience compared to using pre-trained networks.
+  
 ## Outputs
 
-- The best model weights (based on validation loss) are saved to:
-```
-/content/drive/MyDrive/final_weights.pth
-```
 
-- Training and validation loss/accuracy metrics are printed for each epoch.
 
 ## Additional Notes
 
