@@ -1,9 +1,7 @@
 # Galaxy Classification Project
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This project is a galaxy image classification model, submitted as part of the Final Project for the course **Image and Video Processing with Deep Learning**
-
-**The project follows the directory structure and submission format exactly as specified in the assignment guidelines.
-**-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 The model has been trained on a galaxy image dataset using PyTorch and demonstrates standard deep learning practices such as data augmentation, learning rate scheduling, and early stopping.
