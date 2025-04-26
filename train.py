@@ -5,11 +5,21 @@ import torchvision.transforms as transforms
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from tqdm import tqdm
 from config import learning_rate, epochs, early_stop_patience, train_transform, val_test_transform , train_path, val_path
-from dataset import get_loader
+from dataset import get_loader , get_dataset
 from utils import get_device as device 
+import numpy as np
 
 def train_model(model, train_loader, valid_loader):
-    criterion = nn.CrossEntropyLoss()
+
+    train_dataset = get_dataset(train_path, transform=train_transform)
+    
+    # Loss function with class weights
+    class_counts = np.bincount(train_dataset.targets)
+    class_weights = 1. / class_counts
+    class_weights = class_weights / class_weights.sum()  
+    class_weights = torch.FloatTensor(class_weights).to(device)
+    criterion = nn.CrossEntropyLoss(weight=class_weights)
+
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
 

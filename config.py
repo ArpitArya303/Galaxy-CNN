@@ -1,3 +1,4 @@
+import torch
 import torchvision.transforms as transforms
 
 # Image dimensions
@@ -10,9 +11,9 @@ mean = [0.0461, 0.0405, 0.0299]
 std = [0.0831, 0.0696, 0.0586]
 
 # Training hyperparameters
-batch_size = 64
-learning_rate = 0.001
-num_workers = 4
+batch_size = 64  
+learning_rate = 0.001  
+num_workers = 4  
 
 # Training settings
 epochs = 30
@@ -20,6 +21,16 @@ early_stop_patience = 10
 
 # Number of classes
 num_classes = 5
+
+# device
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+    print("Using GPU:", torch.cuda.get_device_name(0))
+else:
+    device = torch.device("cpu")
+    print("Using CPU")
+
+device = device
 
 # Transformations
 train_transform = transforms.Compose([
@@ -38,6 +49,6 @@ val_test_transform = transforms.Compose([
 ])
 
 # Paths to dataset directories
-train_path = 'data'
-val_path = 'data'
-test_path = 'data'
+train_path = 'data'   # change this to your training data path
+val_path = 'data'   # change this to your validation data path
+test_path = 'data'  # change this to your test data path
