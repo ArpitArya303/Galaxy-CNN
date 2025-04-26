@@ -73,34 +73,6 @@ dataset/
 
 3. Update the `train_path` and `valid_path` variables in the code with your local dataset paths.
 
-## Installation Instructions
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/your-username/galaxy-classification-cnn.git
-cd galaxy-classification-cnn
-```
-
-2. **Set up a virtual environment (recommended):**
-```bash
-python -m venv venv
-source venv/bin/activate  # For Linux/Mac
-.\venv\Scripts\activate   # For Windows
-```
-
-3. **Install the required packages:**
-```bash
-pip install torch torchvision numpy matplotlib
-```
-
-*(You might need to install `torch` with CUDA separately depending on your system. See [PyTorch installation instructions](https://pytorch.org/get-started/locally/))*
-
-4. **Run the training script:**
-Make sure your dataset paths are correctly set, then execute:
-```bash
-python train.py
-```
-
 ## Outputs
 
 - The best model weights (based on validation loss) are saved to:
@@ -116,14 +88,4 @@ python train.py
 - **Early stopping** and **learning rate scheduler** were employed to prevent overfitting.
 - **Class imbalance** was handled by computing class weights based on sample counts.
 - **Data Augmentation:** Applied horizontal flips, vertical flips, and random rotations to improve generalization.
-
-## Future Work
-
-- Implement model evaluation metrics like confusion matrix, precision, recall, F1-score.
-- Try transfer learning with pre-trained networks like ResNet or EfficientNet for improved performance.
-- Fine-tune hyperparameters (learning rate, batch size) using cross-validation.
-
-## License
-
-This project is licensed under the MIT License.
 
