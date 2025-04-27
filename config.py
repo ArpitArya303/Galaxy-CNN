@@ -22,6 +22,11 @@ num_classes = 5
 if torch.cuda.is_available():
     device = torch.device("cuda")
     print("Using GPU:", torch.cuda.get_device_name(0))
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+    print("Using GPU: Apple MPS (Metal Performance Shaders)")
+    device = torch.device("cpu")
+    print("Using CPU")
 else:
     device = torch.device("cpu")
     print("Using CPU")
