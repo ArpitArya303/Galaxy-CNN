@@ -1,12 +1,14 @@
 # Galaxy Classification Project
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---
+
 This project is a galaxy image classification model, submitted as part of the Final Project for the course **Image and Video Processing with Deep Learning**
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+---
 
-The model has been trained on a galaxy image dataset using PyTorch and demonstrates standard deep learning practices such as data augmentation, learning rate scheduling, and early stopping.
+This project involves building a Convolutional Neural Network (CNN) for the classification of galaxy images into five distinct categories. The model is trained on the Galaxy Zoo dataset using PyTorch and implements various best practices such as data augmentation, learning rate scheduling, and early stopping.
 
-This project implements a Convolutional Neural Network (CNN) to classify galaxy images into five categories:
+This project implements a Convolutional Neural Network (CNN) to classify galaxy images into following five categories:
 - Cigar-shaped smooth
 - Completely round smooth
 - Edge-on
@@ -26,10 +28,34 @@ This project covers:
 ## Model Architecture
 
 The model, **GalaxyCNN**, consists of:
-- 3 convolutional layers with ReLU activation and max-pooling
-- Adaptive average pooling
-- 3 fully connected (dense) layers
-- Output layer for 5 galaxy classes
+
+**Network Layers:**
+
+- Conv1 (3 → 32): The first convolutional layer with 3 input channels (RGB images) and 32 output channels. It uses a 3x3 kernel with padding to maintain the spatial dimensions.
+
+- Max Pooling: After each convolutional layer, max pooling is applied with a 2x2 kernel to reduce the spatial dimensions of the feature map by half.
+
+- Conv2 (32 → 64): The second convolutional layer has 32 input channels and 64 output channels, followed by ReLU activation and max pooling.
+
+- Conv3 (64 → 128): The third convolutional layer has 64 input channels and 128 output channels, followed by ReLU activation and max pooling.
+
+- Adaptive Average Pooling: After the convolutional layers, an adaptive average pooling layer is applied, resizing the feature map to a fixed size of 7x7. This ensures that the model can handle variable input image sizes while outputting a consistent feature map size.
+
+**Fully Connected Layers:**
+
+- FC1: A fully connected layer that takes the output of the adaptive pooling and flattens it into a 1D vector, followed by 512 units.
+
+- FC2: The second fully connected layer with 256 units.
+
+- FC3: The final fully connected layer outputs 5 units, corresponding to the 5 galaxy classes.
+
+Activation Functions:
+
+- ReLU: ReLU activation is applied after each convolutional and fully connected layer, which helps introduce non-linearity and allows the network to learn more complex patterns.
+
+Output:
+
+- The output layer (FC3) produces a vector of size 5, representing the 5 different galaxy classes
 
 Key features:
 - **Input Size:** 224 × 224 pixels
@@ -49,6 +75,8 @@ You can download the original dataset from here(This has only one folder named T
 Or if you prefer using my dataset where I have divided into train, validation and test sets:
 
 **[Galaxy-zoo-split](https://www.kaggle.com/datasets/arpitarya03/galaxy-zoo-split)**
+
+Note: The train and validation was performed on this dataset. The test set was not touched and if you want can check the model performance on it.
 
 **Path Instructions:**
 1. Download and extract the dataset.
@@ -89,11 +117,20 @@ Test_images/
 - Efficiency: The model is lightweight, allowing it to train quickly even with limited computational resources.
 
 - Educational Purpose: Building the model from scratch reinforces core deep learning concepts, providing valuable learning experience compared to using pre-trained networks.
-  
-## Points to be noted
-**Predict.py file**
 
+Given the relatively small size of the dataset, a moderately deep custom CNN was chosen to balance performance with training efficiency. Pre-trained models were not used to focus on building a model from scratch to better understand the process.
 
+## Interface Summary
+
+All important functions and classes are exposed via `interface.py` for easy access during evaluation.
+
+| Purpose | Interface Name | Source File |
+|:--------|:---------------|:------------|
+| Model Class | `TheModel` | `model.py` |
+| Training Function | `the_trainer` | `train.py` |
+| Prediction Function | `the_predictor` | `predict.py` |
+| Custom Dataset Class | `TheDataset` | `dataset.py` |
+| Data Loader | `the_dataloader` | `dataset.py` |
 
 ## Additional Notes
 
@@ -101,4 +138,8 @@ Test_images/
 - **Early stopping** and **learning rate scheduler** were employed to prevent overfitting.
 - **Class imbalance** was handled by computing class weights based on sample counts.
 - **Data Augmentation:** Applied horizontal flips, vertical flips, and random rotations to improve generalization.
+- **Accuracy:** The model achieved an accuracy of approximately 94% on the validation set.
 
+## Evaluation Notes
+
+- The test set was left untouched for evaluation purposes.
