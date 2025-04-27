@@ -25,8 +25,6 @@ if torch.cuda.is_available():
 elif torch.backends.mps.is_available():
     device = torch.device("mps")
     print("Using GPU: Apple MPS (Metal Performance Shaders)")
-    device = torch.device("cpu")
-    print("Using CPU")
 else:
     device = torch.device("cpu")
     print("Using CPU")
