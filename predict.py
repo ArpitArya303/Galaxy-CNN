@@ -6,26 +6,29 @@ from model import GalaxyCNN
 from config import test_path, device, val_test_transform
 from torchvision import datasets
 
-def predict_galaxy(image_path, model_path):
+# Load model weights 
+model = GalaxyCNN(num_classes=len(class_labels))
+model.load_state_dict(torch.load(weights_path, map_location=device))
+model.to(device)
+model.eval()
 
-    # Load dataset to get class labels
-    dataset = datasets.ImageFolder(root=test_path)
-    class_labels = dataset.classes
+def inferloader(list_of_img_paths, transform=val_test_transform):
+    images = []
+    for path in list_of_img_paths:
+        img = Image.open(path).convert('RGB')
+        img = transform(img)
+        images.append(img)
+    Batch = torch.stack(images)
+    return Batch 
 
-    # Load model
-    model = GalaxyCNN(num_classes=len(class_labels))
-    model.load_state_dict(torch.load(model_path, map_location=device))
-    model.to(device)
-    model.eval()
-
-    # Load and preprocess image
-    image = Image.open(image_path).convert('RGB')
-    image = val_test_transform(image).unsqueeze(0).to(device)
+def classify_galaxies(list_of_img_paths):
+    galaxy_batch = inferloader(list_of_img_paths)
+    galaxy_batch = galaxy_batch.to(device)
 
     # Predict
     with torch.no_grad():
-        outputs = model(image)
-        _, predicted = torch.max(outputs, 1)
-        predicted_class = class_labels[predicted.item()]
+        logits = model(galaxy_batch)    
+        preds = torch.argmax(logits, dim=1)
+        labels = [class_labels[p.item()] for p in preds]
 
-    print(f"Predicted class for {image_path}: {predicted_class}")
+    return labels
