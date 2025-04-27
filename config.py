@@ -1,7 +1,7 @@
 import torch
 import torchvision.transforms as transforms
 
-# Image dimensions
+# Image 
 resize_x = 224
 resize_y = 224
 input_channels = 3
@@ -10,16 +10,12 @@ input_channels = 3
 mean = [0.0461, 0.0405, 0.0299]
 std = [0.0831, 0.0696, 0.0586]
 
-# Training hyperparameters
+# Training settings
 batch_size = 64  
 learning_rate = 0.001  
-num_workers = 4  
-
-# Training settings
-epochs = 100
+num_workers = 4 
+num_epochs = 100
 early_stop_patience = 10
-
-# Number of classes
 num_classes = 5
 
 # device
