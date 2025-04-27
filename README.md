@@ -1,11 +1,4 @@
 # Galaxy Classification Project
-
----
-
-This project is a galaxy image classification model, submitted as part of the Final Project for the course **Image and Video Processing with Deep Learning**
-
----
-
 This project involves building a Convolutional Neural Network (CNN) for the classification of galaxy images into five distinct categories. The model is trained on the Galaxy Zoo dataset using PyTorch and implements various best practices such as data augmentation, learning rate scheduling, and early stopping.
 
 This project implements a Convolutional Neural Network (CNN) to classify galaxy images into following five categories:
