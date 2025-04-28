@@ -1,13 +1,15 @@
-# predict.py
-
 import torch
+from config import device, weights_path, val_test_transform
 from PIL import Image
-from model import GalaxyCNN 
-from config import test_path, device, val_test_transform
-from torchvision import datasets
+from model import GalaxyCNN  
+from dataset import get_dataset
+
+# Load class labels
+dataset = get_dataset('data')
+class_labels = dataset.classes
 
 # Load model weights 
-model = GalaxyCNN(num_classes=len(class_labels))
+model = GalaxyCNN()
 model.load_state_dict(torch.load(weights_path, map_location=device))
 model.to(device)
 model.eval()
