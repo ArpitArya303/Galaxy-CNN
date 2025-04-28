@@ -2,3 +2,4 @@ Train_images.zip
 galaxy_splits.zip
 test1.py
 test.py
+__pycache__/
