@@ -132,7 +132,3 @@ All important functions and classes are exposed via `interface.py` for easy acce
 - **Class imbalance** was handled by computing class weights based on sample counts.
 - **Data Augmentation:** Applied horizontal flips, vertical flips, and random rotations to improve generalization.
 - **Accuracy:** The model achieved an accuracy of approximately 94% on the validation set.
-
-## Evaluation Notes
-
-- The test set was left untouched for evaluation purposes.
